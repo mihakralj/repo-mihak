@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>repo-mihak</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #f6f8fa;
+        }
+        header {
+            background-color: #24292e;
+            color: white;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 12px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        OPNsense community repository by mihak
+    </header>
+    <div class="container">
+        <p>Repository for OPNsense firewall with some plugins, CLI tools and mirrors of packages from other sources. See list of packages in repo below.</p>
+
+        <p>To install this repo:</p>
+        <pre>
+fetch -o /usr/local/etc/pkg/repos/repo-mihak.conf https://repo.mihak.link/repo-mihak.conf
+pkg update</pre>
+
+        <p>Find out what is available in the (installed) repo:</p>
+        <pre>
+pkg search -g -r repo-mihak \*</pre>
+
+        <p>Remove this repo:</p>
+        <pre>
+rm /usr/local/etc/pkg/repos/repo-mihak.conf</pre>
+        <p>(removing the repo will not remove previously installed packages from the repo)</p>
+
+        <p>Find out what you have installed from this repo:</p>
+        <pre>
+pkg query -a '%R %n-%v' | grep repo-mihak </pre>
+    </div>
+</body>
+</html>

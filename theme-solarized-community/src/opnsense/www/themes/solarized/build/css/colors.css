@@ -1,0 +1,25 @@
+@charset "UTF-8";
+:root {
+--base3: #fdf6e3;
+--base2: #eee8d5;
+--base1: #93a1a1;
+--base0: #839496;
+--base00:#657b83;
+--base01:#586e75;
+--base02:#073642;
+--base03:#002b36;
+
+--accent:#e55800;
+
+--yellow: #b58900;
+--orange: #e55800;
+--red:    #dc322f;
+--magenta:#d33682;
+--violet: #6c71c4;
+--blue:   #278bd3;
+--cyan:   #2aa198;
+--green:  #859900;
+
+--fa-primary-color: var(--base02);
+--fa-secondary-color: var(--base03);
+}

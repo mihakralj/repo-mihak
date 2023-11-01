@@ -1,0 +1,124 @@
+<form>
+    <field>
+        <id>general.enabled</id>
+        <label>NextDNS CLI Enabled (see info)</label>
+        <type>checkbox</type>
+        <help>Enable or disable Nextdns CLI; Before enabling, make sure that Unbound (or any other DNS listener) is not already using port 53. Best practice is to keep Unbound enabled with a different listening port (i.e. :5300) and use it for discovery DNS</help>
+    </field>
+
+    <field>
+        <id>general.config</id>
+        <label>Configuration IDs (semicolon-separated)</label>
+        <type>text</type>
+        <help>Comma-separated field; NextDNS requires at least one, and allows multiple config ids, each one can be prefixed with a condition that is a match for each query. For example, a CIDR can be used to restrict a configuration to a subnet: 10.0.3.0/24=abcdef, a MAC address can be used to restrict configuration to a specific host: 00:1c:42:2e:60:4a=abcdef</help>
+    </field>
+
+    <field>
+        <id>general.autoactivate</id>
+        <label>Auto Activate</label>
+        <type>checkbox</type>
+        <help>NextDNS will run activate at startup and deactivate on exit.</help>
+    </field>
+
+    <field>
+        <id>general.setuprouter</id>
+        <label>Auto-setup router</label>
+        <type>checkbox</type>
+        <help>Automatically configure NextDNS for a router setup. Common types of routers are detected to integrate gracefuly - and this is the most optimal setting for OPNsense. Changes applied are undone on daemon exit. The listen option is ignored when this option is used.</help>
+    </field>
+
+    <field>
+        <id>general.listen</id>
+        <label>Listening [host]:port (semicolon-separated) (see info)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>This setting is ignored if the auto-setup-router is set to true. Listening port for UDP DNS requests. Can be just the port (:53), ip:port (192.168.1.1:53) or host:port (localhost:53)</help>
+    </field>
+
+    <field>
+        <id>general.reportclientinfo</id>
+        <label>Report client info</label>
+        <type>checkbox</type>
+        <help>NextDNS will attempt to detect and report tne name of the client that issued DNS queries.</help>
+    </field>
+
+    <field>
+        <id>general.discoverydns</id>
+        <label>Discovery DNS (see info)</label>
+        <type>text</type>
+        <help>This setting is only active if the report-client-info is set to true. host:port of a DNS/DHCP server that reports client names (usually this points to Unbound service, on a different port from 53). If empty, the address learned via DHCP broadcasts will be used.</help>
+    </field>  
+
+    <field>
+        <id>general.forwarder</id>
+        <label>DNS forward for a specified domain (semicolon-separated)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Forwarders can be defined to send proxy DNS traffic to an alternative DNS upstream resolver for specific domains. The format of this parameter is [DOMAIN=]SERVER_ADDR. Can ben either an IP[:PORT] for DNS53 (unencrypted UDP, TCP), or a HTTPS URL for a DNS over HTTPS server. For DoH, a bootstrap IP can be specified as follow: https://dns.nextdns.io#45.90.28.0. Several servers can be specified, separated by comas to implement failover: mycompany.com=1.2.3.4,1.2.3.5; mycompany2.com=https://doh.mycompany.com/dns-query#1.2.3.4 </help>
+    </field>
+
+    <field>
+        <id>general.cachesize</id>
+        <label>Nextdns cache size (in MB)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Set the size of the cache in megabytes. Use 0 to disable caching. The cache is automatically flushed when the pointed configuration is updated.</help>
+    </field>
+
+    <field>
+        <id>general.cachemaxage</id>
+        <label>cache-max-age duration (in sec)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>If set to greater than 0, a cached entry will be considered stale after this duration, even if the record's TTL is higher.</help>
+    </field>
+
+    <field>
+        <id>general.maxttl</id>
+        <label>Max time-to-live duration (in sec)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>If set to greater than 0, defines the maximum TTL value that will be handed out to clients. The specified maximum TTL will be given to clients instead of the true TTL value if it is lower. The true TTL value is however kept in the cache to evaluate cache entries freshness. This is best used in conjunction with the cache to force clients not to rely on their own cache in order to pick up configuration changes faster.</help>
+    </field>
+
+    <field>
+        <id>general.timeout</id>
+        <label>Query timeout (in sec)</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum duration allowed for a request before failing. Default: 5s</help>
+    </field>
+    
+    <field>
+        <id>general.logqueries</id>
+        <label>Log queries to local log</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>Add DNS queries to OPNsense local log. Disabling this option will not disable general system logging of NextDNS.</help>
+    </field>
+    
+    <field>
+        <id>general.usehosts</id>
+        <label>Nextdns uses hosts file</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>Use local hosts file before querying upstream DNS servers</help>
+    </field>
+
+    <field>
+        <id>general.detectcaptiveportals</id>
+        <label>Detect captive portals</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>Automatic detection of captive portals and fallback on system DNS to allow the connection to establish.Beware that enabling this feature can allow an attacker to force nextdns to disable DoH and leak unencrypted DNS traffic.</help>
+    </field>  
+
+    <field>
+        <id>general.boguspriv</id>
+        <label>Bogus private reverse lookups</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>All reverse lookups for private IP ranges (ie 192.168.x.x, etc.) are answered with "no such domain" rather than being forwarded upstream. The set of prefixes affected is the list given in RFC6303.</help>
+    </field>  
+
+</form>
