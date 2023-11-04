@@ -3,29 +3,42 @@
 <head>
     <title>repo-mihak</title>
     <style>
+        :root {
+            --foreground-color: #000;
+            --background-color: #fff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --foreground-color: #fff;
+                --background-color: #000;
+            }
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 20px;
-            background-color: #f6f8fa;
+            color: var(--foreground-color);
+            background-color: var(--background-color);
         }
+
         header {
-            background-color: #24292e;
-            color: white;
             padding: 10px;
             font-size: 1.5em;
         }
+
         .container {
-            background-color: #ffffff;
             padding: 20px;
             border-radius: 6px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
         }
+
         pre {
-            background-color: #f0f0f0;
             padding: 12px;
             border-radius: 3px;
         }
     </style>
+
 </head>
 <body>
     <header>
@@ -51,6 +64,7 @@ rm /usr/local/etc/pkg/repos/repo-mihak.conf</pre>
         <p>Find out what you have installed from this repo:</p>
         <pre>
 pkg query -a '%R %n-%v' | grep repo-mihak </pre>
+<img src="flow.svg">
     </div>
 </body>
 </html>
