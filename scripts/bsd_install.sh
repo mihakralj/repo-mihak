@@ -15,9 +15,9 @@ get_freebsd_catalog() {
   tmp_dir="/tmp/pkg_site_tmp_dir" && mkdir -p "$tmp_dir"
 
   # Fetch and unpack the packagesite file
-  fetch -q -o "${tmp_dir}/packagesite.txz" "${repourl}/packagesite.txz"
-  tar -xf "${tmp_dir}/packagesite.txz" -C "$tmp_dir" packagesite.yaml
-  rm "${tmp_dir}/packagesite.txz" # Clean up the downloaded tar file
+  fetch -q -o "${tmp_dir}/packagesite.pkg" "${repourl}/packagesite.pkg"
+  tar -xf "${tmp_dir}/packagesite.pkg" -C "$tmp_dir" packagesite.yaml
+  rm "${tmp_dir}/packagesite.pkg" # Clean up the downloaded tar file
 }
 
 # Function to process a package and its dependencies
